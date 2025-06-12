@@ -1,6 +1,6 @@
 ﻿namespace curso_rocket.Communication.Requests;
 
-internal class ClientsRequestJson
+public class ClientsRequestJson
 {
     public string Name { get; set; } = string.Empty;
 

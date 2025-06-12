@@ -1,41 +1,48 @@
 ﻿
+using curso_c_.API.UseCases.Clients.Register;
+using curso_rocket.Communication.Requests;
+using curso_rocket.Communication.Response;
 using Microsoft.AspNetCore.Mvc;
 
-namespace curso_c_.API.Controllers
+namespace curso_c_.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ClientController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClientController : ControllerBase
+    [HttpPost]
+    [ProducesResponseType(typeof(ResposeClientJson), StatusCodes.Status201Created)]
+    public IActionResult Register([FromBody] ClientsRequestJson request)
     {
-        [HttpPost]
-        public IActionResult Register()
-        {
-            return Ok();
-        }
+        var useCase = new RegisterClientUseCase();
 
-        [HttpPut]
-        public IActionResult Update()
-        {
-            return Ok();
-        }
+        var response = useCase.Execute(request);
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            return Ok();
-        }
+        return Created(string.Empty, response);
+    }
 
-        [HttpGet]
-        [Route("{id}")]
-        public IActionResult GetById(Guid id)
-        {
-            return Ok();
-        }
+    [HttpPut]
+    public IActionResult Update()
+    {
+        return Ok();
+    }
 
-        [HttpDelete]
-        public IActionResult Delete()
-        {
-            return Ok();
-        }
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        return Ok();
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public IActionResult GetById([FromBody] Guid id)
+    {
+        return Ok();
+    }
+
+    [HttpDelete]
+    public IActionResult Delete()
+    {
+        return Ok();
     }
 }
