@@ -1,5 +1,4 @@
-﻿
-using curso_c_.API.UseCases.Clients.Register;
+﻿using curso_c_.API.UseCases.Clients.Register;
 using curso_rocket.Communication.Requests;
 using curso_rocket.Communication.Response;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +10,10 @@ namespace curso_c_.API.Controllers;
 public class ClientController : ControllerBase
 {
     [HttpPost]
+
     [ProducesResponseType(typeof(ResposeClientJson), StatusCodes.Status201Created)]
+
+    [ProducesResponseType(typeof(ErrorMessageJson), StatusCodes.Status400BadRequest)]
     public IActionResult Register([FromBody] ClientsRequestJson request)
     {
         var useCase = new RegisterClientUseCase();
