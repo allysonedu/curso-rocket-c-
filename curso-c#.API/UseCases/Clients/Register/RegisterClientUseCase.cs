@@ -8,6 +8,10 @@ public class RegisterClientUseCase
     public ResposeClientJson Execute(ClientsRequestJson request)
 
     {
+        var validator = new RegisterClientValidator();
+
+        var result = validator.Validate(request);
+
         return new ResposeClientJson();
 
     }
